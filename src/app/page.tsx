@@ -1,95 +1,288 @@
+"use client";
+
 import Image from "next/image";
-import styles from "./page.module.css";
+import { Button } from "antd";
+import { WindowsOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import Head from "next/head";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  useEffect(() => {
+    document.title = "Snow Shot - 简单优雅的工具软件";
+  }, []);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+      <Head>
+        <title>Snow Shot - 简单优雅的工具软件</title>
+        <meta name="description" content="简单优雅的工具软件" />
+      </Head>
+
+      <div className="container">
+        {/* Hero Section */}
+        <div className="hero">
+          <div className="hero-content">
+            <div className="logo-section">
+              <Image
+                src="/app-icon.png"
+                alt="Snow Shot Logo"
+                width={83}
+                height={83}
+                className="logo"
+              />
+              <h1 className="brand-name">Snow Shot</h1>
+            </div>
+
+            <h2 className="hero-title">简单优雅的工具软件</h2>
+            <p className="hero-subtitle">功能完备，纯粹的社区驱动</p>
+
+            <div className="cta-buttons">
+              <Button
+                icon={<WindowsOutlined />}
+                onClick={() => {
+                  window.open("/setup/Snow Shot_x64-setup.exe", "_blank");
+                }}
+                color="purple"
+                variant="solid"
+              >
+                Windows 下载
+              </Button>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="app-preview">
+              <Image
+                src="/app-home.png"
+                alt="Snow Shot App Preview"
+                objectFit="contain"
+                width={1536 / 1.8}
+                height={948 / 1.8}
+                className="app-image"
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Footer */}
+        <footer className="footer">
+          <div className="footer-content">
+            <p>&copy; 2025 Snow Shot</p>
+            <a href="https://beian.miit.gov.cn/" target="_blank">
+              赣ICP备2021006312号-3
+            </a>
+          </div>
+        </footer>
+
+        <style jsx>{`
+          .container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #9254de 0%, #722ed1 100%);
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              sans-serif;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+          }
+
+          .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+            position: relative;
+          }
+
+          .hero-content {
+            flex: 1;
+            padding-right: 60px;
+          }
+
+          .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            margin-left: -16px;
+          }
+
+          .logo {
+            border-radius: 16px;
+            margin-right: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .brand-name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+
+          .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #fff, #f8f8f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+
+          .hero-subtitle {
+            font-size: 1rem;
+            margin-bottom: 24px;
+            color: rgba(255, 255, 255, 0.64);
+            line-height: 1.6;
+          }
+
+          .cta-buttons {
+            display: flex;
+            gap: 16px;
+          }
+
+          .primary-btn {
+            background: linear-gradient(45deg, #9254de, #b37feb);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(146, 84, 222, 0.3);
+          }
+
+          .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(146, 84, 222, 0.83);
+          }
+
+          .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+          }
+
+          .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+          }
+
+          .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .app-preview {
+            position: absolute;
+            left: calc(50%);
+            top: 0;
+            transform-origin: left center;
+            opacity: 0.64;
+            filter: blur(6px);
+            transition: all 0.3s ease;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            width: 100%;
+          }
+
+          .app-preview:hover {
+            opacity: 1;
+            filter: blur(0px);
+          }
+
+          .app-preview :global(img) {
+            transition: transform 0.3s ease;
+            transform-origin: left center;
+            transform: scale(2);
+            border-radius: 8px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+          }
+
+          .app-preview:hover :global(img) {
+            transform: scale(1);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+          }
+
+          .footer {
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            font-size: 12px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+
+          .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 16px;
+          }
+
+          .footer-content a {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+            text-decoration: none;
+          }
+
+          .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+          }
+
+          @media (max-width: 768px) {
+            .hero {
+              flex-direction: column;
+              text-align: center;
+              padding: 60px 20px;
+            }
+
+            .hero-content {
+              padding-right: 0;
+              margin-bottom: 40px;
+            }
+
+            .hero-title {
+              font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+              justify-content: center;
+            }
+
+            .app-image {
+              width: 300px;
+              height: auto;
+            }
+          }
+        `}</style>
+      </div>
+    </>
   );
 }
