@@ -50,7 +50,7 @@ export default function Home() {
               <Button
                 onClick={() => {
                   window.open(
-                    "/setup/Snow Shot_windows-x64-portable.exe",
+                    "/setup/Snow Shot_windows-x64-portable.zip",
                     "_blank"
                   );
                 }}
