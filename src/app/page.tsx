@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "antd";
-import { WindowsOutlined } from "@ant-design/icons";
+import { Button, Radio } from "antd";
+import { AppleOutlined, WindowsOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import Head from "next/head";
 
@@ -40,12 +40,36 @@ export default function Home() {
               <Button
                 icon={<WindowsOutlined />}
                 onClick={() => {
-                  window.open("/setup/Snow Shot_x64-setup.exe", "_blank");
+                  window.open("/setup/Snow Shot_windows-x64.exe", "_blank");
                 }}
                 color="purple"
                 variant="solid"
               >
                 Windows 下载
+              </Button>
+              <Button
+                onClick={() => {
+                  window.open(
+                    "/setup/Snow Shot_windows-x64-portable.exe",
+                    "_blank"
+                  );
+                }}
+                color="purple"
+                variant="solid"
+              >
+                Windows 免安装版
+              </Button>
+            </div>
+            <div className="cta-buttons" style={{ marginTop: "16px" }}>
+              <Button
+                icon={<AppleOutlined />}
+                onClick={() => {
+                  window.open("/setup/Snow Shot_macos-aarch64.dmg", "_blank");
+                }}
+                color="purple"
+                variant="solid"
+              >
+                macOS 下载
               </Button>
             </div>
           </div>
