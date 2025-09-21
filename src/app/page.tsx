@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Button, Radio } from "antd";
+import { Button } from "antd";
 import { AppleOutlined, WindowsOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import Head from "next/head";
