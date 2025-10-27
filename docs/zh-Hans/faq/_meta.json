@@ -1,0 +1,17 @@
+[
+	{
+		"type": "dir",
+		"name": "common",
+		"label": "常见问题"
+	},
+	{
+		"type": "dir",
+		"name": "windows",
+		"label": "Windows"
+	},
+	{
+		"type": "dir",
+		"name": "macOs",
+		"label": "MacOS"
+	}
+]

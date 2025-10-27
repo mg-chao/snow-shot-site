@@ -1,0 +1,22 @@
+[
+	{
+		"type": "file",
+		"name": "index",
+		"label": "快速入门"
+	},
+	{
+		"type": "dir",
+		"name": "function",
+		"label": "软件功能"
+	},
+	{
+		"type": "dir",
+		"name": "personalization",
+		"label": "个性化"
+	},
+	{
+		"type": "dir",
+		"name": "settings",
+		"label": "设置"
+	}
+]

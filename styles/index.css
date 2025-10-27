@@ -1,0 +1,18 @@
+/* styles/index.css */
+
+:root {
+    /* 修改主题色 */
+    --rp-c-brand: #9254DD;
+    --rp-c-brand-dark: #7c3db8;
+    --rp-c-brand-darker: #6329a1;
+    --rp-c-brand-light: #a875e8;
+    --rp-c-brand-lighter: #c5a3f0;
+    /* 修改左侧侧边栏宽度 */
+    --rp-sidebar-width: 280px;
+    /* 修改右侧大纲栏宽度 */
+    --rp-aside-width: 256px;
+    /* 修改代码块标题背景 */
+    --rp-code-title-bg: rgba(146, 84, 221, 0.15);
+    /* 修改代码块内容背景 */
+    --rp-code-block-bg: rgba(146, 84, 221, 0.05);
+}

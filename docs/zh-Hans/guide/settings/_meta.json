@@ -1,0 +1,22 @@
+[
+	{
+		"type": "file",
+		"name": "ui",
+		"label": "界面设置"
+	},
+	{
+		"type": "file",
+		"name": "function",
+		"label": "功能设置"
+	},
+	{
+		"type": "file",
+		"name": "hotKeys",
+		"label": "热键设置"
+	},
+	{
+		"type": "file",
+		"name": "system",
+		"label": "系统设置"
+	}
+]
