@@ -1,0 +1,17 @@
+[
+	{
+		"type": "file",
+		"name": "captureHistory",
+		"label": "截图历史"
+	},
+	{
+		"type": "file",
+		"name": "translate",
+		"label": "翻译"
+	},
+	{
+		"type": "file",
+		"name": "aiChat",
+		"label": "AI 对话"
+	}
+]
