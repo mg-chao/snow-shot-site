@@ -43,4 +43,4 @@ Snow Shot 目前支持 Windows 和 MacOS 操作系统。
 
 ![MacOS 安装示例](/docs-imgs/macos-install.webp)
 
-常见问题：**[Snow Shot 已损坏，无法打开](http://localhost:3000/faq/index.html#snow-shot-%E5%B7%B2%E6%8D%9F%E5%9D%8F%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80)**
+常见问题：**[Snow Shot 已损坏，无法打开](/faq/macOs/1.html)**
