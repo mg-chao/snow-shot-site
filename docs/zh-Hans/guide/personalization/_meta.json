@@ -1,6 +1,11 @@
 [
 	{
 		"type": "file",
+		"name": "appearance",
+		"label": "外观配色"
+	},
+	{
+		"type": "file",
 		"name": "plugin",
 		"label": "插件"
 	}
