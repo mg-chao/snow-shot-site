@@ -1,5 +1,221 @@
+import React from 'react';
 import Theme from 'rspress/theme';
 import './afterFeatures.css';
+
+const HeroBanner = () => {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const [mousePos, setMousePos] = React.useState({ x: -1000, y: -1000 });
+  const [isDark, setIsDark] = React.useState(false);
+
+  // 检测暗黑模式
+  React.useEffect(() => {
+    const checkDarkMode = () => {
+      // 检查 html 元素的 class 或 data-theme 属性
+      const htmlElement = document.documentElement;
+      const isDarkMode = 
+        htmlElement.classList.contains('dark') || 
+        htmlElement.getAttribute('data-theme') === 'dark' ||
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDark(isDarkMode);
+    };
+
+    checkDarkMode();
+
+    // 监听主题变化
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme'],
+    });
+
+    // 监听系统主题变化
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => checkDarkMode();
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // 设置 canvas 尺寸
+    const updateSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = 850;
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+
+    // 雪花类
+    class Snowflake {
+      x: number;
+      y: number;
+      size: number;
+      speedY: number;
+      speedX: number;
+      opacity: number;
+      swingSpeed: number;
+      swingAmount: number;
+      angle: number;
+
+      constructor(canvasWidth: number, canvasHeight: number, randomY = true) {
+        this.x = Math.random() * canvasWidth;
+        this.y = randomY ? Math.random() * canvasHeight : -10;
+        this.size = Math.random() * 3 + 2;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.6 + 0.4;
+        this.swingSpeed = Math.random() * 0.01 + 0.005;
+        this.swingAmount = Math.random() * 0.8 + 0.4;
+        this.angle = Math.random() * Math.PI * 2;
+      }
+
+      update(mouseX: number, mouseY: number, width: number, height: number) {
+        // 摆动效果
+        this.angle += this.swingSpeed;
+        this.x += Math.sin(this.angle) * this.swingAmount + this.speedX;
+        
+        // 鼠标交互 - 雪花被吹散
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxDistance = 120;
+
+        if (distance < maxDistance && mouseX !== -1000) {
+          const force = (maxDistance - distance) / maxDistance;
+          const angle = Math.atan2(dy, dx);
+          // 雪花被推开，并且加速下落
+          this.x -= Math.cos(angle) * force * 4;
+          this.y -= Math.sin(angle) * force * 2;
+          this.speedY += force * 0.5;
+        } else {
+          // 恢复正常下落速度
+          this.speedY = Math.max(this.speedY * 0.98, Math.random() * 1 + 0.5);
+        }
+
+        this.y += this.speedY;
+
+        // 边界检测 - 重置到顶部
+        if (this.y > height) {
+          this.y = -10;
+          this.x = Math.random() * width;
+          this.speedY = Math.random() * 1 + 0.5;
+        }
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+      }
+
+      draw(ctx: CanvasRenderingContext2D, isDarkMode: boolean) {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        // 暗黑模式下雪花颜色稍微调暗一点
+        ctx.fillStyle = isDarkMode ? '#e8f4f8' : '#ffffff';
+        
+        // 绘制雪花形状
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI * 2 * i) / 6;
+          const x = this.x + Math.cos(angle) * this.size;
+          const y = this.y + Math.sin(angle) * this.size;
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.closePath();
+        ctx.fill();
+        
+        // 中心圆点
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.restore();
+      }
+    }
+
+    // 创建雪花
+    const snowflakes: Snowflake[] = [];
+    for (let i = 0; i < 100; i++) {
+      snowflakes.push(new Snowflake(canvas.width, canvas.height, true));
+    }
+
+    // 动画循环
+    let animationId: number;
+
+    const animate = () => {
+      // 根据主题设置背景渐变
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      
+      if (isDark) {
+        // 暗黑模式：深蓝到深灰
+        gradient.addColorStop(0, '#1a2332');
+        gradient.addColorStop(1, '#0f1419');
+      } else {
+        // 亮色模式：更深的蓝色渐变
+        gradient.addColorStop(0, '#64b5f6');
+        gradient.addColorStop(1, '#bbdefb');
+      }
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 绘制雪花
+      snowflakes.forEach((snowflake) => {
+        snowflake.update(mousePos.x, mousePos.y, canvas.width, canvas.height);
+        snowflake.draw(ctx, isDark);
+      });
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      cancelAnimationFrame(animationId);
+    };
+  }, [mousePos, isDark]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      style={{
+        width: '100%',
+        height: '850px',
+        position: 'absolute',
+        zIndex: -1,
+        overflow: 'hidden',
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{
+          display: 'block',
+          width: '100%',
+          height: '100%',
+        }}
+      />
+    </div>
+  );
+};
 
 // 以下展示所有的 Props
 const Layout = () => (
@@ -144,7 +360,10 @@ const AfterFeaturesContent = () => {
 };
 
 const HomeLayout = () => (
-  <Theme.HomeLayout afterFeatures={<AfterFeaturesContent />} />
+  <Theme.HomeLayout 
+    beforeHero={<HeroBanner />}
+    afterFeatures={<AfterFeaturesContent />} 
+  />
 );
 
 export default {
