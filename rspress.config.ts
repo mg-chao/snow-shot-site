@@ -32,6 +32,10 @@ export default defineConfig({
 				content: "https://github.com/mg-chao/snow-shot",
 			},
 		],
+		footer: {
+			message:
+				'<div style="display: flex; align-items: center; justify-content: center; gap: 12px;"><span>© 2025 Snow Shot</span><div style="width: 1px; height: 14px; background-color: currentColor; opacity: 0.3;"></div><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2021006312号-3</a></div>',
+		},
 	},
 	locales: [
 		// {
