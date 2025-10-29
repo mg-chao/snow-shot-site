@@ -6,6 +6,11 @@
 	},
 	{
 		"type": "file",
+		"name": "detectOcr",
+		"label": "文本提取"
+	},
+	{
+		"type": "file",
 		"name": "translate",
 		"label": "翻译"
 	},
