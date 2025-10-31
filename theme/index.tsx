@@ -10,22 +10,23 @@ const HeroBanner = () => {
   // 检测暗黑模式
   React.useEffect(() => {
     const checkDarkMode = () => {
-      // 检查 html 元素的 class 或 data-theme 属性
+      // 通过检查 html 元素的 color-scheme 属性来判断主题
       const htmlElement = document.documentElement;
-      const isDarkMode = 
-        htmlElement.classList.contains('dark') || 
-        htmlElement.getAttribute('data-theme') === 'dark' ||
-        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const colorScheme = getComputedStyle(htmlElement).colorScheme;
+      
+      // 如果 color-scheme 包含 'dark'，则为暗黑模式
+      // 如果 color-scheme 为 'light' 或不包含 'dark'，则为亮色模式
+      const isDarkMode = colorScheme.includes('dark') && !colorScheme.includes('light');
       setIsDark(isDarkMode);
     };
 
     checkDarkMode();
 
-    // 监听主题变化
+    // 监听主题变化 - 监听可能影响 color-scheme 的属性变化
     const observer = new MutationObserver(checkDarkMode);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class', 'data-theme'],
+      attributeFilter: ['class', 'data-theme', 'style'],
     });
 
     // 监听系统主题变化
@@ -199,8 +200,9 @@ const HeroBanner = () => {
       onMouseMove={handleMouseMove}
       style={{
         width: '100%',
-        height: '850px',
+        height: '950px',
         position: 'absolute',
+        top: -100,
         zIndex: -1,
         overflow: 'hidden',
       }}
