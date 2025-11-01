@@ -9,7 +9,7 @@ Snow Shot 目前支持 Windows 和 MacOS 操作系统。
 ### Windows
 
 - [Windows x64](https://snowshot.top/setup/Snow%20Shot_windows-x64.exe)
-- [Windows x64 绿色版](https://snowshot.top/setup/Snow%20Shot_windows-x64-portable.zip)
+- [Windows x64 绿色版（无法运行请使用安装版）](https://snowshot.top/setup/Snow%20Shot_windows-x64-portable.zip)
 
 ### MacOS
 
