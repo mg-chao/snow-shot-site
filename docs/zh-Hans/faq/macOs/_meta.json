@@ -3,5 +3,10 @@
 		"type": "file",
 		"name": "1",
 		"label": "Snow Shot 已损坏，无法打开"
+	},
+	{
+		"type": "file",
+		"name": "2",
+		"label": "更新 Snow Shot 提示无权限"
 	}
 ]
