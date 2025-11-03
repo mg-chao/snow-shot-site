@@ -14,6 +14,7 @@ Snow Shot 目前支持 Windows 和 MacOS 操作系统。
 ### MacOS
 
 - [MacOS AArch64](https://snowshot.top/setup/Snow%20Shot_macos-aarch64.dmg)
+- [MacOS Intel](https://snowshot.top/setup/Snow%20Shot_macos-x64.dmg)
 
 ### 分流
 
