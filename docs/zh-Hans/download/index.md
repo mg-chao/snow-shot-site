@@ -11,6 +11,10 @@ Snow Shot 目前支持 Windows 和 MacOS 操作系统。
 - [Windows x64](https://snowshot.top/setup/Snow%20Shot_windows-x64.exe)
 - [Windows x64 绿色版（无法运行请使用安装版）](https://snowshot.top/setup/Snow%20Shot_windows-x64-portable.zip)
 
+#### 最新版 Windows 的 WebView 在 4K 分辨率及以上的显示器（或多个显示器组合）上存在渲染性能问题，请尝试使用以下版本
+
+- [Windows x64 修复](https://snowshot.top/setup/Snow%20Shot_windows-x64-fixedRuntime.exe)
+
 ### MacOS
 
 - [MacOS AArch64](https://snowshot.top/setup/Snow%20Shot_macos-aarch64.dmg)
